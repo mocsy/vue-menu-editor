@@ -33,8 +33,23 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 It's intentionally ustyled (mostly, see todo).
 This provides the most flexibility to you when you consider including it in your project.
 
+### Use in your code
+```bash
+npm install vue-menu-editor
+```
+
+Pass data back to parent component/script
+```javascript
+<menuedit :items="your_menu_items" :validate="menu_validate" @data="menu_data"></menuedit>
+...
+// Send anything to validate to signal that menu edit is finished
+this.menu_validate = { };
+...
+// In methods, handle menu data
+menu_data(data) {
+    this.my_menu = data;
+}
+```
+
 ### Todo
-* Remove dependency on element-ui
-* Remove red color on active element
 * Provide an optional default style and a demo page
-* Pass data back to parent document

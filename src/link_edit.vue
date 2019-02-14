@@ -1,18 +1,35 @@
 <template>
-  <el-form :model="link">
-    <el-form-item label="Text">
-      <el-input v-model="link.text"></el-input>
-    </el-form-item>
-    <el-form-item label="Url">
-      <el-input v-model="link.url"></el-input>
-    </el-form-item>
-    <el-form-item label="Target">
-      <el-input v-model="link.target"></el-input>
-    </el-form-item>
-    <el-form-item label="Icon">
-      <el-input v-model="link.icon"></el-input>
-    </el-form-item>
-  </el-form>
+  <form v-if="link">
+    <div class="form-group">
+      <div>
+        <label for="text">Text</label>
+      </div>
+      <input type="text" class="form-control" id="text" v-model="link.text" />
+    </div>
+    <div class="form-group">
+      <div>
+        <label for="url">Url</label>
+      </div>
+      <input type="text" class="form-control" id="url" v-model="link.url" />
+    </div>
+    <div class="form-group">
+      <div>
+        <label for="target">Target</label>
+      </div>
+      <input
+        type="text"
+        class="form-control"
+        id="target"
+        v-model="link.target"
+      />
+    </div>
+    <div class="form-group">
+      <div>
+        <label for="icon">Icon</label>
+      </div>
+      <input type="text" class="form-control" id="icon" v-model="link.icon" />
+    </div>
+  </form>
 </template>
 
 <script>
@@ -30,7 +47,7 @@ export default {
     };
   },
   props: {
-    link: {},
+    link: {}
   },
   methods: {}
 };

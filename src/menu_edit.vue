@@ -3,7 +3,10 @@
     <vue-nestable v-model="nestableItems">
       <vue-nestable-handle
         slot-scope="{ item }"
-        :item="item" v-on:click.native="item_click(item)" :class="{'active': item == active_item}">
+        :item="item"
+        v-on:click.native="item_click(item)"
+        :class="{ active: item == active_item }"
+      >
         {{ item.text }}
       </vue-nestable-handle>
     </vue-nestable>
@@ -14,58 +17,31 @@
 <script>
 export default {
   name: "menu_edit",
-  data: function () {
+  data: function() {
     return {
-      visual: "",
-      url: "",
-      active: false,
-      icon: "",
-      clearance: 0,
-      children: [],
-      nestableItems: [
-        {
-          id: 0,
-          text: 'User',
-          url: "user",
-          target: "_self",
-          icon: "fa fa-user-circle",
-        }, {
-          id: 1,
-          text: 'Blog',
-          url: "blog",
-          target: "_self",
-          icon: "fa fa-align-left",
-          children: [{
-            id: 2,
-            text: 'Food',
-            url: "blog/food",
-            target: "_self",
-            icon: "fa fa-carrot",
-          }]
-        }, {
-          id: 3,
-          text: 'Admin',
-          url: "admin/dashboard",
-          target: "_self",
-          icon: "fa fa-toolbox",
-        }
-      ],
-      active_item: null,
+      nestableItems: [],
+      active_item: null
     };
   },
   props: {
-    items: String
+    items: {},
+    validate: {}
+  },
+  watch: {
+    validate: function() {
+      this.$emit("data", this.nestableItems);
+      this.$emit("validated", true);
+    }
+  },
+  mounted: function() {
+    if (this.items) {
+      this.nestableItems = this.items;
+    }
   },
   methods: {
-    item_click: function (item) {
+    item_click: function(item) {
       this.active_item = item;
-    },
-  },
+    }
+  }
 };
 </script>
-
-<style scoped lang="scss">
-  .active {
-    color: red;
-  }
-</style>
