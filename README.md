@@ -51,5 +51,3 @@ menu_data(data) {
 }
 ```
 
-### Todo
-* Provide an optional default style and a demo page

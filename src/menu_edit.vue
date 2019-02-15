@@ -7,10 +7,11 @@
         v-on:click.native="item_click(item)"
         :class="{ active: item == active_item }"
       >
+        <i :class="item.handleicon" v-if="item.handleicon" />
         {{ item.text }}
       </vue-nestable-handle>
     </vue-nestable>
-    <link_edit :link="active_item"></link_edit>
+    <linkedit :link="active_item"></linkedit>
   </div>
 </template>
 
